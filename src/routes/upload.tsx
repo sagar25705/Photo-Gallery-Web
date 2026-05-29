@@ -13,7 +13,7 @@ export const Route = createFileRoute("/upload")({ component: UploadPage });
 const CATS = ["Nature", "Wildlife", "Landscape", "Macro", "Portrait", "Travel", "Mountains", "Forest"];
 
 function UploadPage() {
-  const { user, loading } = useAuth();
+  const { user, loading, profile } = useAuth();
   const nav = useNavigate();
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string>("");
@@ -39,14 +39,26 @@ function UploadPage() {
     setFile(f); setPreview(URL.createObjectURL(f));
   };
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!file || !user) return;
-    if (!title.trim()) { toast.error("Title required"); return; }
+ const submit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!file || !user) return;
+
+  if ((profile as any)?.is_banned) {
+    toast.error(
+      "Your account has been banned by the administrator."
+    );
+    return;
+  }
+
+  if (!title.trim()) {
+    toast.error("Title required");
+    return;
+  }
     setBusy(true); setProgress(20);
     try {
       const ext = file.name.split(".").pop() || "jpg";
-      const path = `${user.id}/${crypto.randomUUID()}.${ext}`;
+      const path = `${user.id}/${Date.now()}-${Math.random().toString(36).substring(2,9)}.${ext}`;
       const { error: upErr } = await supabase.storage.from("photos").upload(path, file, { cacheControl: "3600", upsert: false });
       if (upErr) throw upErr;
       setProgress(70);

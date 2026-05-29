@@ -18,7 +18,7 @@ function Saved() {
     enabled: !!user,
     queryFn: async () => {
       const { data } = await supabase.from("saved_photos")
-        .select("photos(*, profiles(username,name,avatar_url))")
+        .select("photos(*)")
         .eq("user_id", user!.id);
       return (data ?? []).map((r) => r.photos).filter(Boolean) as unknown as Photo[];
     },

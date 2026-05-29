@@ -20,7 +20,7 @@ function Home() {
     queryFn: async () => {
       const { data } = await supabase
         .from("photos")
-        .select("*, profiles(username,name,avatar_url)")
+        .select("*, profiles!photos_profile_fk(username,name,avatar_url)")
         .order("likes_count", { ascending: false })
         .limit(8);
       return (data ?? []) as unknown as Photo[];

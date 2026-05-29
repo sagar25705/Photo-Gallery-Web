@@ -31,7 +31,7 @@ function Explore() {
   const { data: photos = [], isLoading } = useQuery({
     queryKey: ["explore", category, q, sort],
     queryFn: async () => {
-      let qb = supabase.from("photos").select("*, profiles(username,name,avatar_url)").limit(60);
+      let qb = supabase.from("photos").select("*, profiles!photos_profile_fk(username,name,avatar_url)").limit(60);
       if (category && category !== "All") qb = qb.eq("category", category);
       if (q) qb = qb.or(`title.ilike.%${q}%,description.ilike.%${q}%,location.ilike.%${q}%`);
       if (sort === "liked" || sort === "trending") qb = qb.order("likes_count", { ascending: false });

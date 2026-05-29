@@ -38,3 +38,11 @@ export const supabase = new Proxy({} as ReturnType<typeof createSupabaseClient>,
   },
 });
 
+
+// supabase
+//   .from("profiles")
+//   .select("*")
+//   .then(({ data, error }) => {
+//     console.log("SUPABASE DATA:", data);
+//     console.log("SUPABASE ERROR:", error);
+//   });
