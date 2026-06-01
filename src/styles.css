@@ -1,4 +1,4 @@
-@import "tailwindcss" source(none);
+@import "tailwindcss" source(none); 
 @source "../src";
 @import "tw-animate-css";
 
@@ -44,15 +44,15 @@
   --background: oklch(0.18 0.04 155);
   --foreground: oklch(0.96 0.02 150);
 
-  --deep: oklch(0.14 0.05 160);
-  --mint: oklch(0.82 0.16 155);
+  --deep: oklch(87.346% 0.06962 150.666);
+  --mint: oklch(15.804% 0.03281 160.118);
 
-  --card: oklch(0.22 0.045 158 / 0.55);
+  --card: oklch(16.855% 0.05208 16.827 / 0.55);
   --card-foreground: oklch(0.96 0.02 150);
   --popover: oklch(0.22 0.045 158);
-  --popover-foreground: oklch(0.96 0.02 150);
+  --popover-foreground: oklch(19.897% 0.05436 146.966);
 
-  --primary: oklch(0.78 0.18 152);
+  --primary: oklch(71.837% 0.18261 143.687);
   --primary-foreground: oklch(0.15 0.06 160);
 
   --secondary: oklch(0.28 0.05 158 / 0.6);
