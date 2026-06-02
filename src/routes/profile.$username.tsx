@@ -117,6 +117,29 @@ const uploadAvatar = async (
 
   if (!file || !user) return;
 
+   // Security Check 1
+  if (!file.type.startsWith("image/")) {
+    toast.error("Only image files allowed");
+    return;
+  }
+
+  // Security Check 2
+  if (file.size > 3 * 1024 * 1024) {
+    toast.error("Maximum 3MB image allowed");
+    return;
+  }
+  const allowedTypes = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp"
+];
+
+if (!allowedTypes.includes(file.type)) {
+  toast.error("Only JPG, PNG and WEBP allowed");
+  return;
+}
+
   const fileExt = file.name.split(".").pop();
   const fileName = `${user.id}-${Date.now()}.${fileExt}`;
 

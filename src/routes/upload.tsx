@@ -30,14 +30,40 @@ function UploadPage() {
 
   useEffect(() => { if (!loading && !user) nav({ to: "/login" }); }, [user, loading, nav]);
 
-  const onPick = (f: File | null) => {
-    if (!f) return;
-    if (!["image/jpeg", "image/png", "image/webp"].includes(f.type)) {
-      toast.error("Only JPG, PNG, WEBP allowed"); return;
-    }
-    if (f.size > 15 * 1024 * 1024) { toast.error("Max 15MB"); return; }
-    setFile(f); setPreview(URL.createObjectURL(f));
-  };
+ const onPick = (f: File | null) => {
+  if (!f) return;
+
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+  ];
+
+  if (!allowedTypes.includes(f.type)) {
+    toast.error(
+      "Only JPG, PNG and WEBP images are allowed"
+    );
+    return;
+  }
+
+  const ext = f.name
+    .split(".")
+    .pop()
+    ?.toLowerCase();
+
+  if (!["jpg", "jpeg", "png", "webp"].includes(ext ?? "")) {
+    toast.error("Invalid file extension");
+    return;
+  }
+
+  if (f.size > 15 * 1024 * 1024) {
+    toast.error("Maximum 15MB image allowed");
+    return;
+  }
+
+  setFile(f);
+  setPreview(URL.createObjectURL(f));
+};
 
  const submit = async (e: React.FormEvent) => {
   e.preventDefault();
