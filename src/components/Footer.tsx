@@ -25,8 +25,8 @@ export function Footer() {
         <p>© {new Date().getFullYear()} PicZio. All rights reserved.</p>
         <div className="flex items-center gap-4">
           <a href="mailto:gaurisagar343@gmail.com" aria-label="Email"><Mail className="size-4 hover:text-primary" /></a>
-          <a href="#" aria-label="Instagram"><Instagram className="size-4 hover:text-primary" /></a>
-          <a href="#" aria-label="GitHub"><Github className="size-4 hover:text-primary" /></a>
+          <a href="https://www.instagram.com/pixelsofnature_27" aria-label="Instagram"><Instagram className="size-4 hover:text-primary" /></a>
+          <a href="https://github.com/sagar25705" aria-label="GitHub"><Github className="size-4 hover:text-primary" /></a>
         </div>
       </div>
     </footer>

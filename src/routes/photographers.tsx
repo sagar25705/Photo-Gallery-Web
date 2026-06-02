@@ -138,6 +138,16 @@ function Photographers() {
                   )}
                 </div>
 
+<label className="cursor-pointer px-4 py-2 rounded-lg bg-green-500 text-black font-medium">
+  Change Photo
+  <input
+    type="file"
+    accept="image/*"
+    onChange={handleAvatarUpload}
+    hidden
+  />
+</label>
+
                 {/* NAME */}
                 <div className="font-semibold mt-3 line-clamp-1">
                   {p.name ?? "Unnamed User"}
